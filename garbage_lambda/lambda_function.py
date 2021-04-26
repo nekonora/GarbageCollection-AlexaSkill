@@ -2,6 +2,7 @@
 
 import text_builders
 import dates_parser
+import data_models
 
 def lambda_handler(event, context):
     if event['session']['new']:
@@ -39,8 +40,10 @@ def intent_scheme(event):
         return fallback_call(event)
 
 def check_day(date):
-    # in format of '2015-11-24'
-    garbage = dates_parser.get_garbage_at_date(date)
+    garbage_list = dates_parser.get_garbage_at_date(date)
+    garbage_list_desc = list(map(data_models.GarbageType.description, garbage_list))
+    garbage = ' e '.join(garbage_list_desc)
+
     card_TEXT = ""
     card_TITLE = ""
     reprompt_MSG = ""
