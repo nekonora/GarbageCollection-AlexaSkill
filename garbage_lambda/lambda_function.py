@@ -42,7 +42,10 @@ def intent_scheme(event):
 def check_day(date):
     garbage_list = dates_parser.get_garbage_at_date(date)
     garbage_list_desc = list(map(data_models.GarbageType.description, garbage_list))
-    garbage = ' e '.join(garbage_list_desc)
+    if not garbage_list_desc:
+        garbage = "Nessuna spazzatura!"
+    else:
+        garbage = ' e '.join(garbage_list_desc)
 
     card_TEXT = ""
     card_TITLE = ""
