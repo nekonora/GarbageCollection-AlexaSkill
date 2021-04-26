@@ -8,6 +8,7 @@ class GarbageType(Enum):
     foliage = 2
     notReciclable = 3
     organic = 4
+    business_paper = 5
 
     def description(self):
         if self.value == 0:
@@ -20,3 +21,5 @@ class GarbageType(Enum):
             return "Non riciclabile"
         elif self.value == 4:
             return "Umido"
+        elif self.value == 5:
+            return "Carta Attivitá"
